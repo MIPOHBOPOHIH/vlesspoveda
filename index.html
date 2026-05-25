@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ВЛЕССЗАГРИБАМИ</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #07090d;
+      --text: #f8fafc;
+      --muted: #b7c2d2;
+      --gold: #f6d36b;
+      --blue: #6fa8ff;
+      --pink: #ff7ab6;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      overflow-x: hidden;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 25% 25%, rgba(111, 168, 255, 0.24), transparent 32rem),
+        radial-gradient(circle at 80% 75%, rgba(255, 122, 182, 0.2), transparent 28rem),
+        linear-gradient(145deg, #07090d 0%, #111827 50%, #05060a 100%);
+    }
+
+    main {
+      width: min(1100px, calc(100vw - 32px));
+      display: grid;
+      gap: 48px;
+      justify-items: center;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 100%;
+      font-size: clamp(28px, 5.4vw, 78px);
+      line-height: 1.08;
+      font-weight: 900;
+      letter-spacing: 0;
+      text-wrap: balance;
+      text-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
+    }
+
+    h1 a {
+      position: relative;
+      display: inline-block;
+      color: #d9ebff;
+      text-decoration: none;
+      text-shadow:
+        0 0 16px rgba(111, 168, 255, 0.9),
+        0 0 42px rgba(111, 168, 255, 0.62),
+        0 0 84px rgba(41, 121, 255, 0.42);
+      transition: color 140ms ease, text-shadow 140ms ease;
+    }
+
+    h1 a::before {
+      content: "";
+      position: absolute;
+      inset: -0.18em -0.24em;
+      z-index: -1;
+      border-radius: 8px;
+      background: radial-gradient(ellipse at center, rgba(79, 146, 255, 0.38), rgba(79, 146, 255, 0.16) 45%, transparent 72%);
+      filter: blur(12px);
+    }
+
+    h1 a:hover {
+      color: #ffffff;
+      text-shadow:
+        0 0 18px rgba(111, 168, 255, 1),
+        0 0 54px rgba(111, 168, 255, 0.82),
+        0 0 104px rgba(41, 121, 255, 0.58);
+    }
+
+    #days {
+      display: inline-block;
+      min-width: 12ch;
+      color: var(--gold);
+      font-variant-numeric: tabular-nums;
+      text-shadow: 0 0 24px rgba(246, 211, 107, 0.5);
+    }
+
+    .clicker-row {
+      width: min(1040px, 94vw);
+      display: grid;
+      grid-template-columns: minmax(140px, 1fr) auto minmax(140px, 1fr);
+      align-items: center;
+      justify-items: center;
+      gap: clamp(12px, 3vw, 34px);
+    }
+
+    .side-gif {
+      width: clamp(170px, 28vw, 330px);
+      aspect-ratio: 1;
+      display: block;
+      object-fit: contain;
+      pointer-events: none;
+      user-select: none;
+      filter: drop-shadow(0 16px 24px rgba(0, 0, 0, 0.36));
+    }
+
+    .clicker {
+      display: grid;
+      align-items: center;
+      justify-items: center;
+      gap: 10px;
+      border: 0;
+      border-radius: 8px;
+      padding: 12px 18px 16px;
+      color: var(--text);
+      background: rgba(8, 17, 31, 0.62);
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.28);
+      font: inherit;
+      font-size: clamp(16px, 2vw, 24px);
+      font-weight: 900;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      transition: transform 140ms ease, box-shadow 140ms ease;
+    }
+
+    .clicker:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 20px 52px rgba(246, 211, 107, 0.35);
+    }
+
+    .clicker:active {
+      transform: translateY(1px) scale(0.98);
+    }
+
+    .clicker img {
+      width: clamp(96px, 18vw, 180px);
+      aspect-ratio: 1;
+      object-fit: contain;
+      display: block;
+      pointer-events: none;
+      filter: drop-shadow(0 14px 18px rgba(0, 0, 0, 0.35));
+    }
+
+    .stars {
+      width: min(820px, 92vw);
+      min-height: 220px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(18px, 5vw, 56px);
+      perspective: 900px;
+    }
+
+    .star {
+      width: clamp(72px, 14vw, 150px);
+      aspect-ratio: 1;
+      color: var(--star-color, var(--blue));
+      filter: drop-shadow(0 0 18px color-mix(in srgb, var(--star-color, var(--blue)) 55%, transparent));
+      animation: spin 3.8s linear infinite;
+    }
+
+    .star:nth-child(2) {
+      width: clamp(92px, 18vw, 190px);
+      animation-duration: 5s;
+      animation-direction: reverse;
+    }
+
+    .star:nth-child(3) {
+      animation-duration: 4.4s;
+    }
+
+    .star svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotateZ(0deg) rotateY(0deg);
+      }
+      to {
+        transform: rotateZ(360deg) rotateY(360deg);
+      }
+    }
+
+    @media (max-width: 700px) {
+      body {
+        align-items: start;
+        padding: 20px 0 30px;
+      }
+
+      main {
+        gap: 28px;
+      }
+
+      .clicker-row {
+        width: min(420px, 94vw);
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .side-gif {
+        width: min(46vw, 190px);
+      }
+
+      .clicker {
+        grid-row: 2;
+      }
+
+      .side-gif:first-child {
+        grid-row: 1;
+      }
+
+      .side-gif:last-child {
+        grid-row: 3;
+      }
+
+      .clicker img {
+        width: clamp(110px, 42vw, 168px);
+      }
+
+      .stars {
+        min-height: 170px;
+        gap: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1><a href="https://t.me/vlesszagribamibot?start=mipohbopohih">ВЛЕССЗАГРИБАМИ</a> УЖЕ <span id="days">0.000000</span> ДНЕЙ</h1>
+
+    <div class="clicker-row">
+      <video class="side-gif" src="gif_1.mp4" autoplay muted loop playsinline aria-hidden="true"></video>
+      <button class="clicker" type="button" id="add-star" aria-label="Добавить звезду">
+        <img src="clicker.png" alt="">
+      </button>
+      <video class="side-gif" src="gif_2.mp4" autoplay muted loop playsinline aria-hidden="true"></video>
+    </div>
+
+    <div class="stars" id="stars" aria-label="Крутящиеся звезды Давида">
+      <div class="star" aria-hidden="true">
+        <svg viewBox="0 0 100 100" role="img">
+          <polygon points="50 6 88 72 12 72" fill="none" stroke="currentColor" stroke-width="8" stroke-linejoin="round"/>
+          <polygon points="50 94 12 28 88 28" fill="none" stroke="currentColor" stroke-width="8" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="star" aria-hidden="true">
+        <svg viewBox="0 0 100 100" role="img">
+          <polygon points="50 6 88 72 12 72" fill="none" stroke="currentColor" stroke-width="8" stroke-linejoin="round"/>
+          <polygon points="50 94 12 28 88 28" fill="none" stroke="currentColor" stroke-width="8" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="star" aria-hidden="true">
+        <svg viewBox="0 0 100 100" role="img">
+          <polygon points="50 6 88 72 12 72" fill="none" stroke="currentColor" stroke-width="8" stroke-linejoin="round"/>
+          <polygon points="50 94 12 28 88 28" fill="none" stroke="currentColor" stroke-width="8" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const start = Date.UTC(2025, 6, 15, 14, 6, 2);
+    const daysNode = document.getElementById("days");
+    const addStarButton = document.getElementById("add-star");
+    const starsNode = document.getElementById("stars");
+    const millisecondsPerDay = 24 * 60 * 60 * 1000;
+    const starSvg = `
+      <svg viewBox="0 0 100 100" role="img">
+        <polygon points="50 6 88 72 12 72" fill="none" stroke="currentColor" stroke-width="8" stroke-linejoin="round"/>
+        <polygon points="50 94 12 28 88 28" fill="none" stroke="currentColor" stroke-width="8" stroke-linejoin="round"/>
+      </svg>
+    `;
+
+    function randomStarColor() {
+      return `hsl(${Math.floor(Math.random() * 360)} 92% 68%)`;
+    }
+
+    function updateTimer() {
+      const elapsedDays = (Date.now() - start) / millisecondsPerDay;
+      daysNode.textContent = elapsedDays.toFixed(6);
+      requestAnimationFrame(updateTimer);
+    }
+
+    function addStar() {
+      const star = document.createElement("div");
+      star.className = "star";
+      star.setAttribute("aria-hidden", "true");
+      star.style.setProperty("--star-color", randomStarColor());
+      star.style.animationDuration = `${3.2 + Math.random() * 2.8}s`;
+      star.innerHTML = starSvg;
+      starsNode.append(star);
+    }
+
+    document.querySelectorAll(".star").forEach((star) => {
+      star.style.setProperty("--star-color", randomStarColor());
+    });
+    addStarButton.addEventListener("click", addStar);
+    updateTimer();
+  </script>
+</body>
+</html>
